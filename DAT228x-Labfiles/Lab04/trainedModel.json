@@ -1,0 +1,18 @@
+﻿{
+  "name": "trainedModel",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "AzureStorageLinkedService",
+    "typeProperties": {
+      "folderPath": "bigdata/training/model/",
+      "fileName": "model.ilearner",
+      "format": {
+        "type": "TextFormat"
+      }
+    },
+    "availability": {
+      "frequency": "Month",
+      "interval": 1
+    }
+  }
+}

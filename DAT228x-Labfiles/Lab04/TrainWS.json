@@ -1,0 +1,10 @@
+﻿{
+    "name": "TrainWS",
+    "properties": {
+      "type": "AzureML",
+      "typeProperties": {
+        "mlEndpoint": "<Training_Web_Service_Endpoint>",
+        "apiKey": "<Training_Web_Service_Key>"
+      }
+    }
+}

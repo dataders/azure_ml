@@ -1,0 +1,10 @@
+CREATE TABLE dbo.Calories
+(
+    PatientID INT,
+    WindowStart DATETIME,
+    WindowEnd DATETIME,
+    Duration DECIMAL(10,4),
+    AvgHeartRate DECIMAL(10,4),
+    AvgBodyTemp DECIMAL(10,4),
+    CaloriesBurned DECIMAL(10,4)
+);

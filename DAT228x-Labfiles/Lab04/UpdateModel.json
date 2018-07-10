@@ -1,0 +1,66 @@
+﻿{
+  "name": "Update Diabetes Model",
+  "properties": {
+    "description": "Update Diabetes Prediction Model",
+    "activities": [
+      {
+        "name": "Retrain Model",
+        "type": "AzureMLBatchExecution",
+        "inputs": [
+          {
+            "name": "trainingData"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "trainedModel"
+          }
+        ],
+        "typeProperties": {
+          "webServiceInput": "trainingData",
+          "webServiceOutputs": {
+            "output2": "trainedModel"
+          }
+        },
+        "linkedServiceName": "TrainWS",
+        "policy": {
+          "concurrency": 1,
+          "executionPriorityOrder": "OldestFirst",
+          "retry": 1,
+          "timeout": "02:00:00"
+        }
+      },
+      {
+        "name": "Update Predictive Web Service",
+        "type": "AzureMLUpdateResource",
+        "linkedServiceName": "UpdateWS",
+        "typeProperties": {
+          "trainedModelDatasetName": "trainedModel",
+          "trainedModelName": "Pima Big Data [trained model]"
+        },
+        "inputs": [
+          {
+            "name": "trainedModel"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "trainingOutput"
+          }
+        ],
+        "policy": {
+          "concurrency": 1,
+          "executionPriorityOrder": "OldestFirst",
+          "retry": 3,
+          "timeout": "01:00:00"
+        },
+        "scheduler": {
+          "frequency": "Month",
+          "interval": 1
+        }
+      }
+    ],
+    "start": "2017-02-01T00:00:00Z",
+    "end": "2017-02-01T23:59:59Z"
+  }
+}

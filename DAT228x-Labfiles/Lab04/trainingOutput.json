@@ -1,0 +1,17 @@
+﻿{
+  "name": "trainingOutput",
+  "properties": {
+    "availability": {
+      "frequency": "Month",
+      "interval": 1
+    },
+    "type": "AzureBlob",
+    "linkedServiceName": "AzureStorageLinkedService",
+    "typeProperties": {
+      "folderPath": "bigdata/training/output",
+      "format": {
+        "type": "TextFormat"
+      }
+    }
+  }
+}

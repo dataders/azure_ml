@@ -1,0 +1,44 @@
+﻿{
+  "name": "Process Patient Data",
+  "properties": {
+    "description": "Pipeline to predict diebetes",
+    "activities": [
+      {
+        "name": "Predict Diabetes",
+        "type": "AzureMLBatchExecution",
+        "linkedServiceName": "AzureMLLinkedService",
+        "typeProperties": {
+          "webServiceInput": "patientData",
+          "webServiceOutputs": {
+            "output1": "predictions"
+          },
+          "globalParameters": {
+            "Database server name": "<server>.database.windows.net"
+          }
+        },
+        "inputs": [
+          {
+            "name": "patientData"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "predictions"
+          }
+        ],
+        "policy": {
+          "concurrency": 1,
+          "executionPriorityOrder": "OldestFirst",
+          "retry": 3,
+          "timeout": "01:00:00"
+        },
+        "scheduler": {
+          "frequency": "Day",
+          "interval": 1
+        }
+      }
+    ],
+    "start": "2017-01-01T00:00:00Z",
+    "end": "2017-01-07T23:59:59Z"
+  }
+}

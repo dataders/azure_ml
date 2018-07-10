@@ -1,0 +1,1 @@
+SELECT exp([Scored Labels]) AS Calories FROM t1;

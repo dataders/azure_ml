@@ -1,0 +1,28 @@
+﻿{
+  "name": "trainingData",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "AzureStorageLinkedService",
+    "structure": [],
+    "typeProperties": {
+      "folderPath": "bigdata/training/",
+      "fileName": "training.csv",
+      "format": {
+        "type": "TextFormat",
+        "firstRowAsHeader": true
+      }
+    },
+    "external": true,
+    "availability": {
+      "frequency": "Month",
+      "interval": 1
+    },
+    "policy": {
+      "externalData": {
+        "retryInterval": "00:01:00",
+        "retryTimeout": "00:10:00",
+        "maximumRetry": 3
+      }
+    }
+  }
+}

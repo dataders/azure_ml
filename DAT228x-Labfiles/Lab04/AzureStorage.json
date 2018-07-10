@@ -1,0 +1,10 @@
+﻿{
+    "name": "AzureStorageLinkedService",
+    "properties": {
+      "type": "AzureStorage",
+      "typeProperties": {
+        "connectionString": "<connection_string>"
+      }
+        
+    }
+}

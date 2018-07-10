@@ -1,0 +1,27 @@
+WITH [exercise] AS (
+    SELECT userid,
+           DateAdd(minute ,-1, System.TimeStamp) AS WindowStart,
+           System.TimeStamp AS WindowEnd,
+           AVG(CAST(heartrate AS float)) AS AvgHeartRate,
+           AVG(CAST(bodytemp AS float)) AS AvgBodyTemp
+    FROM [DeviceData] TIMESTAMP BY eventtime
+    GROUP BY userid, TumblingWindow(minute, 1)
+)
+
+SELECT pat.PatientID,
+       ex.WindowStart,
+       ex.WindowEnd,
+       DATEDIFF(minute, ex.WindowStart, ex.WindowEnd) AS Duration,
+       ex.AvgHeartRate,
+       ex.AvgBodyTemp,
+       PredictCalories(pat.PatientID,
+                       pat.Gender,
+                       pat.Age,
+                       pat.Height,
+                       pat.Weight,
+                       DATEDIFF(minute, ex.WindowStart, ex.WindowEnd),
+                       ex.AvgHeartRate,
+                       ex.AvgBodyTemp) AS CaloriesBurned
+INTO [CaloriePredictions]
+FROM [exercise] AS ex
+JOIN [PatientData] AS pat ON ex.userid = pat.UserID

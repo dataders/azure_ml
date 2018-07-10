@@ -1,0 +1,14 @@
+﻿{
+    "name": "UpdateWS",
+    "properties": {
+        "type": "AzureML",
+        "typeProperties": {
+          "mlEndpoint": "<Predictive_Web_Service_Endpoint>",
+          "apiKey": "<Predictive_Web_Service_Key>",
+          "updateResourceEndpoint": "https://management.azure.com/subscriptions/<subscription_ID>/resourceGroups/<resource_group>/providers/Microsoft.MachineLearning/webServices/DiabetesPredictor?api-version=2016-05-01-preview",
+          "servicePrincipalId": "<Application_ID>",
+          "servicePrincipalKey": "<Application_Key>",
+          "tenant": "<xxxx>.onmicrosoft.com"
+      }
+    }
+}

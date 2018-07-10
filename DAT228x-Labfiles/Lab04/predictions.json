@@ -1,0 +1,31 @@
+﻿{
+  "name": "predictions",
+  "properties": {
+    "type": "AzureBlob",
+    "linkedServiceName": "AzureStorageLinkedService",
+    "structure": [],
+    "typeProperties": {
+      "folderPath": "bigdata/predictions",
+      "fileName": "diabetes_predictions_{date}.csv",
+      "partitionedBy": [
+        {
+          "name": "date",
+          "value": {
+            "type": "DateTime",
+            "date": "SliceStart",
+            "format": "yyyyMMdd"
+          }
+        }
+      ],
+        "format":{
+          "type": "TextFormat",
+          "firstRowAsHeader": true
+        }
+    },
+    "external": false,
+    "availability": {
+      "frequency": "Day",
+      "interval": 1
+    }
+  }
+}
